@@ -1,81 +1,73 @@
+<!DOCTYPE html> 
 <html><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
 <title>Kwerty</title>
+
 <style>
 
 body {
-	font-family: Arial;
-	margin: 0;
+	margin: 120px 0px 0px 0px;
+	background: url('sky.png') repeat-x #ffffff;
 	text-align: center;
-	color: #666666;
-	background-image: url('sky.png');
-	background-repeat: repeat-x;
-	background-position: left top;
-	background-color: #ffffff;
+}
+
+#distant-clouds {
+	background: url('distant-clouds.png');
 }
 
 #clouds {
-	background-image: url('clouds.png');
-	background-repeat: repeat-x;
-	background-position: 0px 0px;
-	height: 280px;
-
+	background: url('clouds.png') repeat-x left top;
 }
-
-#butterflies {
-	background-image: url('butterflies.png');
-	background-repeat: no-repeat;
-	background-position: center top;
-	height: 280px;
-}
-
 
 #logo {
 	margin: 0 auto;
-	background-image: url('logo.png');
-	background-repeat: no-repeat;
-	background-position: left 140px;
-	width: 430px;
-	height: 340px;
-
+	background: url('logo.png') no-repeat;
+	width: 500px;
+	height: 180px;
 }
 
 
 </style>
 
 </head><body>
-<div id="butterflies">
-<div id="clouds">
+
+<div id="distant-clouds">
+	<div id="clouds">
+		<div id="logo"></div>
+	</div>
+</div>
 
 <script>
+(function(){
 
-requestAnimFrame = (function() {
+var requestAnimFrame = (function() {
   return window.requestAnimationFrame ||
      window.webkitRequestAnimationFrame ||
      window.mozRequestAnimationFrame ||
      window.oRequestAnimationFrame ||
      window.msRequestAnimationFrame ||
-     function(/* function FrameRequestCallback */ callback, /* DOMElement Element */ element) {
+     function(callback, element) {
        window.setTimeout(callback, 1000/60);
      };
 })();
 
-
-var ticker = 0;
+var clouds = document.getElementById('clouds');
+var distantClouds = document.getElementById('distant-clouds');
+var x = 0;
 
 function moveClouds() {
-	ticker+=1;
-	if (ticker == 500) ticker == 0;
-	document.getElementById('clouds').style['background-position'] = ticker + 'px 0px';
+	x = x < 500 ? x+1 : 0;
+	clouds.style.backgroundPosition = x + 'px top';
+	distantClouds.style.backgroundPosition = -x + 'px top';
 	requestAnimFrame(moveClouds);
 }
 
 requestAnimFrame(moveClouds);
 
+})();
 </script>
 
-<div id="logo"></div>
-</div>
-</div>
-
-
-</body></html>
+</body>
+</html>
