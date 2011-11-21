@@ -2,30 +2,80 @@
 <title>Kwerty</title>
 <style>
 
-body{
+body {
 	font-family: Arial;
 	margin: 0;
 	text-align: center;
 	color: #666666;
-	background-image: url('/back.gif');
+	background-image: url('sky.png');
 	background-repeat: repeat-x;
 	background-position: left top;
+	background-color: #ffffff;
 }
 
-.logo {
-	margin: 0 auto;
-	background-image: url('/logo.gif');
+#clouds {
+	background-image: url('clouds.png');
+	background-repeat: repeat-x;
+	background-position: 0px 0px;
+	height: 280px;
+
+}
+
+#butterflies {
+	background-image: url('butterflies.png');
 	background-repeat: no-repeat;
-	background-position: left top;
-	width: 570px;
-	height: 350px;
+	background-position: center top;
+	height: 280px;
+}
+
+
+#logo {
+	margin: 0 auto;
+	background-image: url('logo.png');
+	background-repeat: no-repeat;
+	background-position: left 140px;
+	width: 430px;
+	height: 340px;
+
 }
 
 
 </style>
 
 </head><body>
+<div id="butterflies">
+<div id="clouds">
 
-<div class=logo></div>
+<script>
+
+requestAnimFrame = (function() {
+  return window.requestAnimationFrame ||
+     window.webkitRequestAnimationFrame ||
+     window.mozRequestAnimationFrame ||
+     window.oRequestAnimationFrame ||
+     window.msRequestAnimationFrame ||
+     function(/* function FrameRequestCallback */ callback, /* DOMElement Element */ element) {
+       window.setTimeout(callback, 1000/60);
+     };
+})();
+
+
+var ticker = 0;
+
+function moveClouds() {
+	ticker+=1;
+	if (ticker == 500) ticker == 0;
+	document.getElementById('clouds').style['background-position'] = ticker + 'px 0px';
+	requestAnimFrame(moveClouds);
+}
+
+requestAnimFrame(moveClouds);
+
+</script>
+
+<div id="logo"></div>
+</div>
+</div>
+
 
 </body></html>
