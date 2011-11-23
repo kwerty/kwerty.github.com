@@ -21,6 +21,10 @@ body {
 	background: url('clouds.png');
 }
 
+.up {
+	background: url('sun.png') no-repeat 100%;
+}
+
 #logo {
 	margin: 0 auto;
 	background: url('logo.png') no-repeat;
@@ -48,9 +52,14 @@ body {
 </head><body>
 
 <div id="distant-clouds">
+	<div id="sun">
+	
 	<div id="clouds">
 		<div id="logo"></div>
 	</div>
+	
+	</div>
+
 </div>
 
 <script>
@@ -67,8 +76,14 @@ var requestAnimFrame = (function() {
      };
 })();
 
+if (new Date().getDay() == 7) {
+	var sun = document.getElementById('sun');
+	sun.setAttribute('class', 'up');
+}
+
 var clouds = document.getElementById('clouds');
 var distantClouds = document.getElementById('distant-clouds');
+
 var x = 0;
 
 function moveClouds() {
