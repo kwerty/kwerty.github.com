@@ -30,7 +30,9 @@ body {
 	background: url('logo.png') no-repeat;
 	width: 500px;
 	height: 180px;
+	display: block;
 }
+
 
 
 </style>
@@ -55,9 +57,9 @@ body {
 	<div id="sun">
 	
 	<div id="clouds">
-		<div id="logo"></div>
+		<a href="http://twitter.com/kwerty" id="logo"></a>
 	</div>
-	
+
 	</div>
 
 </div>
@@ -76,10 +78,11 @@ var requestAnimFrame = (function() {
      };
 })();
 
-if (new Date().getDay() == 0) {
-	var sun = document.getElementById('sun');
-	sun.setAttribute('class', 'up');
-}
+//the sun looks silly
+//if (new Date().getDay() == 0) {
+//	var sun = document.getElementById('sun');
+//	sun.setAttribute('class', 'up');
+//}
 
 var clouds = document.getElementById('clouds');
 var distantClouds = document.getElementById('distant-clouds');
@@ -97,6 +100,8 @@ requestAnimFrame(moveClouds);
 
 })();
 </script>
+
+
 
 </body>
 </html>
