@@ -11,6 +11,16 @@ body {
 	margin: 120px 0px 0px 0px;
 	background: url('sky.png') repeat-x #ffffff;
 	text-align: center;
+	font-family: Arial;
+}
+
+a, a:visited, a:active {
+	color: #d80202;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #292929;
 }
 
 
@@ -38,7 +48,41 @@ body {
 	display: block;
 }
 
+.content {
+	margin: 0px auto;
+	width: 500px;
+	padding: 10px 0px;
+	border: 1px solid #e1e1e1;
+}
 
+h1 {
+	color: #292929;
+}
+
+ul {
+	padding: 0px;
+	list-style: none;
+}
+
+.projects {
+	font-size: 24px;
+}
+
+.links li {
+	display: inline;
+	padding: 0px 15px;
+	border-right: 1px solid #e1e1e1;
+}
+
+.links a, 
+.links a:visited,
+.links a:active {
+	color: #292929;
+
+}
+.links .last {
+	border-right: none;
+}
 
 </style>
 
@@ -59,19 +103,40 @@ body {
 </head><body>
 
 
-
 <div id="distant-clouds">
 	<div id="sun">
-	
-	<div id="clouds">
-
-		<a href="http://kwerty.wordpress.com" id="logo"></a>
-
-	</div>
+		<div id="clouds">
+			<a href="http://kwerty.wordpress.com" id="logo"></a>
+		</div>
 
 	</div>
 </div>
 
+<div class="content">
+
+	<h1>Tools to make life easier</h1>
+
+	<ul class="projects">
+	
+		<li><a href="/Gmail-Notifier-for-Windows-7">Gmail Notifier for Windows 7</a></li>
+		
+		<li><a href="/YouTube-User-Guard">YouTube User Guard</a></li>
+
+		<li><a href="/YouTube-Favorite-Exporter">YouTube Favorite Exporter</a></li>
+		
+	</ul>
+
+	<ul class="links">
+		<li>
+		<a href="http://twitter.com/kwerty">Twitter</a>
+		</li><li>
+		<a href="http://github.com/kwerty">Github</a>
+		</li><li class="last">
+		<a href="http://kwerty.wordpress.com">Blog</a>
+		</li>
+	</ul>
+
+</div>
 
 <script>
 (function(){
