@@ -15,12 +15,19 @@ body {
 	width: 800px;
 }
 
-#uptodate {
+.notice {
 	display: none;
-	background: #009900;
-	color: #ffffff;
 	padding: 5px;
 	text-align: center;
+	color: #ffffff;
+}
+
+#uptodate {
+	background: #009900;
+}
+
+#newversion {
+	background: #990000;
 }
 
 </style>
@@ -43,8 +50,9 @@ body {
 
 <div class="content">
 
-	<div id="uptodate">You already have the latest version</div>
-
+	<div class="notice" id="uptodate">You already have the latest version</div>
+	<div class="notice" id="newversion">A new version has been released with several minor fixes</div>
+	
 	<h1>Kwerty FileLaser Uploader</h1>
 	
 	<p>Kwerty FileLaser Uploader is a free desktop app for uploading files to the <a href="http://filelaser.com">FileLaser</a> service.</p>
@@ -75,6 +83,8 @@ body {
 <script>
 	if (window.location.search == "?curr_version=1.0.0.0")
 		document.getElementById("uptodate").style.display = "block";
+	else if (window.location.search == "?curr_version=1.0.0.1")
+		document.getElementById("newversion").style.display = "block";
 </script>
 
 </body>
