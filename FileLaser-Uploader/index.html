@@ -22,6 +22,10 @@ body {
 	color: #ffffff;
 }
 
+.notice a {
+	color: #ffffff;
+}
+
 #uptodate {
 	background: #009900;
 }
@@ -51,7 +55,7 @@ body {
 <div class="content">
 
 	<div class="notice" id="uptodate">You already have the latest version</div>
-	<div class="notice" id="newversion">A new version has been released with several minor fixes</div>
+	<div class="notice" id="newversion">1.0.0.5 has been released with several minor fixes (<a target="_blank" href="http://kwerty.wordpress.com/2012/06/14/kwerty-filelaser-uploader-1-0-0-5-released/">more info</a>)</div>
 	
 	<h1>Kwerty FileLaser Uploader</h1>
 	
@@ -72,9 +76,9 @@ body {
 
 	<p>We've just released the first beta (Version 1.0) and we'd love for you to help us test it.</p>
 	
-	<p><strong><a href="https://github.com/downloads/kwerty/FileLaser-Uploader/FileLaser-Uploader-1_0_0_4-beta.exe">Download Kwerty FileLaser Uploader Setup</a></strong></p>
+	<p><strong><a href="https://github.com/downloads/kwerty/FileLaser-Uploader/FileLaser-Uploader-1_0_0_5-beta.exe">Download Kwerty FileLaser Uploader Setup</a></strong></p>
 
-	<p><a href="https://github.com/downloads/kwerty/FileLaser-Uploader/FileLaser-Uploader-1_0_0_4-beta.zip">Alternatively you may download a zip file</a></p>
+	<p><a href="https://github.com/downloads/kwerty/FileLaser-Uploader/FileLaser-Uploader-1_0_0_5-beta.zip">Alternatively you may download a zip file</a></p>
 	
 	<p>Please report any issues you run in to on the <a href="https://github.com/kwerty/FileLaser-Uploader/issues">GitHub issue page</a>.</p>
 	
@@ -83,11 +87,15 @@ body {
 </div>
 
 <script>
-	if (window.location.search == "?curr_version=1.0.0.4")
+
+	if (window.location.search == "?curr_version=1.0.0.5")
 		document.getElementById("uptodate").style.display = "block";
-	else if (window.location.search == "?curr_version=1.0.0.1" ||
-			window.location.search == "?curr_version=1.0.0.0")
-		document.getElementById("newversion").style.display = "block";
+		
+	else if (window.location.search == "?curr_version=1.0.0.4" ||
+		window.location.search == "?curr_version=1.0.0.1" ||
+		window.location.search == "?curr_version=1.0.0.0")
+			document.getElementById("newversion").style.display = "block";
+			
 </script>
 
 </body>
