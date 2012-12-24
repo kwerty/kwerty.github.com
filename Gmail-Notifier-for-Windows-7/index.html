@@ -5,6 +5,16 @@
 
 <title>Gmail Notifier for Windows 7 - Kwerty</title>
 
+<script type="text/javascript">
+function recordOutboundLink(link, category, action) {
+try {
+var myTracker=_gat._getTrackerByName();
+_gaq.push(['myTracker._trackEvent', category , action ]);
+setTimeout('document.location = "' + link.href + '"', 100)
+}catch(err){}
+}
+</script>
+
 <style>
 
 body {
@@ -83,7 +93,7 @@ body {
 
 	<p>Download the installer and give it a go</p>
 	
-	<p><strong><a href="http://kwerty.com/Gmail-Notifier-for-Windows-7/Kwerty-Gmail-Notifier-1_3.exe">Download Gmail Notifier 1.3</a></strong></p>
+	<p><strong><a href="http://kwerty.com/Gmail-Notifier-for-Windows-7/Kwerty-Gmail-Notifier-1_3.exe" onClick="recordOutboundLink(this, 'Gmail Notifier Downloads', 'Version 1.3');return false;">Download Gmail Notifier 1.3</a></strong></p>
 
 	<p><a href="/">← Back to main page</a></p>
 	
