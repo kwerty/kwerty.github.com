@@ -5,6 +5,15 @@
 
 <title>YouTube User Guard - Kwerty</title>
 
+<script type="text/javascript">
+function recordOutboundLink(link, category, action) {
+try {
+_gaq.push(['_trackEvent', category , action ]);
+setTimeout('document.location = "' + link.href + '"', 100)
+}catch(err){}
+}
+</script>
+
 <style>
 
 body {
@@ -43,7 +52,7 @@ body {
 	
 	<h2>Installation</h2>
 	
-	<a href="https://bitbucket.org/kwerty/youtube-user-guard/downloads/youtube-user-guard-0_8-unpacked.zip">First, download YouTube User Guard here</a>
+	<a href="https://bitbucket.org/kwerty/youtube-user-guard/downloads/youtube-user-guard-0_9-unpacked.zip" onClick="recordOutboundLink(this, 'YouTube User Guard Downloads', 'YouTube User Guard 0.9 Download');return false;">First, download YouTube User Guard here</a>
 	
 	<p>Extract the downloaded zip file to a folder anywhere on your computer. I recommend a subfolder inside your Documents folder so you don't lose it.</p>
 	
