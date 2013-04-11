@@ -81,7 +81,7 @@ await msgr.LocalUser.ChangeStatusAsync(UserStatus.Away);
 void Msgr_UserStatusChanged(object sender, UserStatusEventArgs e) {
 
 	if (e.Status == UserStatus.Online)
-		Console.WriteLine("{0} is now online");
+		Console.WriteLine("{0} is now online", e.User.LoginName);
 		
 }
 </pre>
@@ -106,7 +106,7 @@ await msgr.UserLists.ReverseList.AddUserAsync(user);
 //forward list is your list of contacts
 await msgr.UserLists.ForwardList.AddUserAsync(user);
 
-//alow list is the list of users allowed to see you online
+//allow list is the list of users allowed to see you online
 await msgr.UserLists.AllowList.AddUserAsync(user);
 </pre>
 
@@ -132,7 +132,7 @@ User user = msgr.GetUser("somebody@hotmail.com");
 
 IMSession imSession = await msgr.CreateIMSession();
 
-imSession.UserJoined += new EventHandler<UserEventArgs>((o, b) => {
+imSession.UserJoined += new EventHandler<UserEventArgs>((o, e) => {
 
 	Console.WriteLine("User was invited and has joined");
 });
