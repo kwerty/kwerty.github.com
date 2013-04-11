@@ -1,0 +1,202 @@
+<!DOCTYPE html> 
+<html><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+<title>Kwerty Messenger Library - Kwerty</title>
+
+<style>
+
+body {
+	font-family: Arial;
+}
+
+.content {
+	width: 800px;
+}
+
+</style>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-27187162-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+
+</head><body>
+
+<div class="content">
+
+<h1>Kwerty Messenger Library</h1>
+
+<p>Kwerty Messenger Library is a .NET class library enabling connectivity with the .NET Messenger service. 
+It's fully asynchronous and uses the async/await keywords introduced in .NET 4.5 Async CTP.
+It also uses Reactive Extensions at its core for processing incoming messages.</p>
+
+<p>The source code is <a href="https://github.com/kwerty/Messenger-Library">available on GitHub</a></p>
+
+<p>Below are some examples demonstrating its basic usage. There is a console app included in the source code which covers the rest.</p>
+
+</div>
+
+
+<h2>Logging in</h2>
+
+<pre class="prettyprint"> 
+Credentials credentials = new Credentials {
+	LoginName = "you@hotmail.com",
+	Password = "yourpassword",
+};
+
+MessengerClient msgr = new MessengerClient(credentials);
+
+await msgr.LoginAsync();		
+</pre>
+
+<h2>Changing your nickname</h2>
+
+<pre class="prettyprint"> 
+await msgr.LocalUser.ChangeNicknameAsync("This is my new name");
+</pre>
+
+<h2>Changing your status</h2>
+
+<pre class="prettyprint"> 
+await msgr.LocalUser.ChangeStatusAsync(UserStatus.Away);
+</pre>
+
+<h2>User changes status</h2>
+
+<pre class="prettyprint"> 
+void Msgr_UserStatusChanged(object sender, UserStatusEventArgs e) {
+
+	if (e.Status == UserStatus.Online)
+		Console.WriteLine("{0} is now online");
+		
+}
+</pre>
+
+<h2>User changes nickname</h2>
+
+<pre class="prettyprint"> 
+void Msgr_UserNicknameChanged(object sender, UserNicknameEventArgs e)
+{
+	Debug.WriteLine("User {0} nickname changed to {1}", e.User.LoginName, e.User.Nickname);
+}
+</pre>
+
+<h2>Add a user</h2>
+
+<pre class="prettyprint"> 
+User user = msgr.GetUser("somebody@hotmail.com");
+
+//all users must be added to reverse list
+await msgr.UserLists.ReverseList.AddUserAsync(user);
+
+//forward list is your list of contacts
+await msgr.UserLists.ForwardList.AddUserAsync(user);
+
+//alow list is the list of users allowed to see you online
+await msgr.UserLists.AllowList.AddUserAsync(user);
+</pre>
+
+<h2>Create a group and add a user to it</h2>
+
+<pre class="prettyprint"> 
+Group group = await msgr.CreateGroupAsync("My mates");
+
+await group.AddUserAsync(user);
+
+</pre>
+		
+<h2>Block a user</h2>
+
+<pre class="prettyprint"> 
+await msgr.UserLists.BlockList.AddUserAsync(user);
+</pre>
+
+<h2>Start an instant messaging session</h2>
+
+<pre class="prettyprint"> 
+User user = msgr.GetUser("somebody@hotmail.com");
+
+IMSession imSession = await msgr.CreateIMSession();
+
+imSession.UserJoined += new EventHandler<UserEventArgs>((o, b) => {
+
+	Console.WriteLine("User was invited and has joined");
+});
+
+await imSession.InviteUserAsync(user);
+</pre>
+
+<h2>Send a message</h2>
+
+<pre class="prettyprint"> 
+Message message = new Message();
+
+message.Body = UTF8Encoding.UTF8.GetBytes("Hello my friend");
+
+await imSession.SendMessageAsync(message);
+
+</pre>
+
+<h2>Send a message with custom formatting</h2>
+
+<pre class="prettyprint"> 
+Message message = new Message();
+
+MessageFormatter formatter = new MessageFormatter();
+formatter.SetRandomColor();
+formatter.Bold = true;
+formatter.ApplyFormat(message);
+
+message.Body = UTF8Encoding.UTF8.GetBytes("Wow look at this");
+
+await imSession.SendMessageAsync(message);
+
+</pre>
+
+<h2>Accepting an invitation to an instant messaging session</h2>
+
+<pre class="prettyprint"> 
+async void Msgr_InvitedToIMSession(object sender, InvitationEventArgs e)
+{
+	IMSession imSession = await Msgr.AcceptInvitationAsync(e.Invitation);
+}
+		
+</pre>
+
+<h2>Receiving messages</h2>
+
+<pre class="prettyprint"> 
+
+void IMSession_MessageReceived(object sender, MessageEventArgs e)
+{
+	if (e.Message.Headers.ContainsKey("TypingUser")) {
+		Console.WriteLine("{0} is typing", e.Sender.LoginName);
+	}
+	else if (e.Message.ContentType != "text/plain; charset=UTF-8")
+	{
+		Console.WriteLine("{0} says: {1}", e.Sender.LoginName, Encoding.UTF8.GetString(e.Message.Body));
+	}
+}
+</pre>
+	
+<p><a href="/">← Back to main page</a></p>
+
+<a href="https://github.com/kwerty/Messenger-Library"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+
+
+</body>
+</html>
