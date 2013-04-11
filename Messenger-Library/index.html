@@ -54,8 +54,8 @@ It also uses Reactive Extensions at its core for processing incoming messages.</
 
 <pre class="prettyprint"> 
 Credentials credentials = new Credentials {
-	LoginName = "you@hotmail.com",
-	Password = "yourpassword",
+	LoginName = &quot;you@hotmail.com&quot;,
+	Password = &quot;yourpassword&quot;,
 };
 
 MessengerClient msgr = new MessengerClient(credentials);
@@ -66,7 +66,7 @@ await msgr.LoginAsync();
 <h2>Changing your nickname</h2>
 
 <pre class="prettyprint"> 
-await msgr.LocalUser.ChangeNicknameAsync("This is my new name");
+await msgr.LocalUser.ChangeNicknameAsync(&quot;This is my new name&quot;);
 </pre>
 
 <h2>Changing your status</h2>
@@ -78,27 +78,26 @@ await msgr.LocalUser.ChangeStatusAsync(UserStatus.Away);
 <h2>User changes status</h2>
 
 <pre class="prettyprint"> 
-void Msgr_UserStatusChanged(object sender, UserStatusEventArgs e) {
-
+msgr.UserStatusChanged += new EventHandler&lt;UserStatusEventArgs&gt;((sender, e) =&gt;
+{
 	if (e.Status == UserStatus.Online)
-		Console.WriteLine("{0} is now online", e.User.LoginName);
-		
-}
+		Console.WriteLine(&quot;{0} is now online&quot;, e.User.LoginName);
+});
 </pre>
 
 <h2>User changes nickname</h2>
 
 <pre class="prettyprint"> 
-void Msgr_UserNicknameChanged(object sender, UserNicknameEventArgs e)
+msgr.UserNicknameChanged += new EventHandler&lt;UserNicknameEventArgs&gt;((sender, e) =&gt;
 {
-	Debug.WriteLine("User {0} nickname changed to {1}", e.User.LoginName, e.User.Nickname);
-}
+	Console.WriteLine(&quot;User {0} nickname changed to {1}&quot;, e.User.LoginName, e.User.Nickname);
+});
 </pre>
 
 <h2>Add a user to your contact list</h2>
 
 <pre class="prettyprint"> 
-User user = msgr.GetUser("somebody@hotmail.com");
+User user = msgr.GetUser(&quot;somebody@hotmail.com&quot;);
 
 //all users must be added to reverse list
 await msgr.UserLists.ReverseList.AddUserAsync(user);
@@ -113,7 +112,7 @@ await msgr.UserLists.AllowList.AddUserAsync(user);
 <h2>Create a group and add a user to it</h2>
 
 <pre class="prettyprint"> 
-Group group = await msgr.CreateGroupAsync("My mates");
+Group group = await msgr.CreateGroupAsync(&quot;My mates&quot;);
 
 await group.AddUserAsync(user);
 
@@ -125,16 +124,30 @@ await group.AddUserAsync(user);
 await msgr.UserLists.BlockList.AddUserAsync(user);
 </pre>
 
+<h2>User added to a list</h2>
+
+<pre class="prettyprint"> 
+
+msgr.UserAddedToList += new EventHandler&lt;UserListUserEventArgs&gt;((sender, e) =&gt;
+{
+
+	if (e.UserList == msgr.UserLists.ForwardList)
+	{
+		Console.WriteLine(&quot;{0} has been added to the forward list&quot;, e.User.LoginName);
+	}
+
+});
+</pre>
+
 <h2>Start an instant messaging session</h2>
 
 <pre class="prettyprint"> 
-User user = msgr.GetUser("somebody@hotmail.com");
+User user = msgr.GetUser(&quot;somebody@hotmail.com&quot;);
 
 IMSession imSession = await msgr.CreateIMSession();
 
-imSession.UserJoined += new EventHandler<UserEventArgs>((o, e) => {
-
-	Console.WriteLine("User was invited and has joined");
+imSession.UserJoined += new EventHandler&lt;UserEventArgs&gt;((sender, e) =&gt; {
+	Console.WriteLine(&quot;User was invited and has joined&quot;);
 });
 
 await imSession.InviteUserAsync(user);
@@ -145,7 +158,7 @@ await imSession.InviteUserAsync(user);
 <pre class="prettyprint"> 
 Message message = new Message();
 
-message.Body = UTF8Encoding.UTF8.GetBytes("Hello my friend");
+message.Body = UTF8Encoding.UTF8.GetBytes(&quot;Hello my friend&quot;);
 
 await imSession.SendMessageAsync(message);
 
@@ -161,7 +174,7 @@ formatter.SetRandomColor();
 formatter.Bold = true;
 formatter.ApplyFormat(message);
 
-message.Body = UTF8Encoding.UTF8.GetBytes("Wow look at this");
+message.Body = UTF8Encoding.UTF8.GetBytes(&quot;Wow look at this&quot;);
 
 await imSession.SendMessageAsync(message);
 
@@ -170,27 +183,28 @@ await imSession.SendMessageAsync(message);
 <h2>Accepting an invitation to an instant messaging session</h2>
 
 <pre class="prettyprint"> 
-async void Msgr_InvitedToIMSession(object sender, InvitationEventArgs e)
+msgr.InvitedToIMSession += new EventHandler&lt;InvitationEventArgs&gt;(async (sender, e) =&gt;
 {
 	IMSession imSession = await Msgr.AcceptInvitationAsync(e.Invitation);
-}
-		
+});	
 </pre>
 
 <h2>Receiving messages</h2>
 
 <pre class="prettyprint"> 
-
-void IMSession_MessageReceived(object sender, MessageEventArgs e)
+imSession.MessageReceived += new EventHandler&lt;MessageEventArgs&gt;((sender, e) =&gt;
 {
-	if (e.Message.Headers.ContainsKey("TypingUser")) {
-		Console.WriteLine("{0} is typing", e.Sender.LoginName);
-	}
-	else if (e.Message.ContentType == "text/plain; charset=UTF-8")
+
+	if (e.Message.Headers.ContainsKey(&quot;TypingUser&quot;))
 	{
-		Console.WriteLine("{0} says: {1}", e.Sender.LoginName, Encoding.UTF8.GetString(e.Message.Body));
+		Console.WriteLine(&quot;{0} is typing&quot;, e.Sender.LoginName);
 	}
-}
+	else if (e.Message.ContentType == &quot;text/plain; charset=UTF-8&quot;)
+	{
+		Console.WriteLine(&quot;{0} says: {1}&quot;, e.Sender.LoginName, Encoding.UTF8.GetString(e.Message.Body));
+	}
+
+});
 </pre>
 	
 <p><a href="/">← Back to main page</a></p>
