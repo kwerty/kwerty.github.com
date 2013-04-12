@@ -16,7 +16,6 @@ body {
 }
 
 .notice {
-	display: none;
 	padding: 5px;
 	text-align: center;
 	color: #ffffff;
@@ -54,9 +53,8 @@ body {
 
 <div class="content">
 
-	<div class="notice" id="uptodate">You already have the latest version</div>
-	<div class="notice" id="newversion">1.0.0.5 has been released, update now (<a target="_blank" href="http://kwerty.wordpress.com/2012/06/14/kwerty-filelaser-uploader-1-0-0-5-released/">more info</a>)</div>
-	
+	<div class="notice" id="newversion">Sadly FileLaser has been shut down so this program no longer works.</div>
+
 	<h1>Kwerty FileLaser Uploader</h1>
 	
 	<p>Kwerty FileLaser Uploader is a free desktop app for uploading files to the <a href="http://filelaser.com">FileLaser</a> file sharing service.</p>
@@ -86,17 +84,8 @@ body {
 	
 </div>
 
-<script>
 
-	if (window.location.search == "?curr_version=1.0.0.5")
-		document.getElementById("uptodate").style.display = "block";
-		
-	else if (window.location.search == "?curr_version=1.0.0.4" ||
-		window.location.search == "?curr_version=1.0.0.1" ||
-		window.location.search == "?curr_version=1.0.0.0")
-			document.getElementById("newversion").style.display = "block";
-			
-</script>
+<a href="https://github.com/kwerty/FileLaser-Uploader"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
 
 </body>
 </html>
