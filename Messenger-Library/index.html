@@ -39,11 +39,21 @@ body {
 
 <h1>Kwerty Messenger Library</h1>
 
-<p>Kwerty Messenger Library is a .NET class library enabling connectivity with the .NET Messenger service. 
-It's fully asynchronous and uses the async/await keywords introduced in .NET 4.5 Async CTP.
-It also uses Reactive Extensions at its core for processing incoming messages.</p>
+<p>Kwerty Messenger Library is a .NET class library enabling connectivity with the .NET Messenger service. You can use
+Kwerty Messenger Library as the foundation for your own custom MSN Messenger/Windows Live Messenger client or bot.</p>
 
-<p>The source code is <a href="https://github.com/kwerty/Messenger-Library">available on GitHub</a></p>
+<p>It uses the MSNP9 protocol to communicate with the .NET Messenger service (running at messenger.hotmail.com) over a TCP/IP socket. It's fully asynchronous 
+and uses the async/await keywords introduced in the .NET Framework 4.5 Async CTP. It also uses Reactive Extensions at its core for handling incoming commands. </p>
+
+<p>Microsoft recently announced they would be shutting down Windows Live Messenger and doing a forced migration to Skype.
+ They have been quite vague about whether they
+will be shutting down the messenger servers so the future of this library is uncertain. Supposedly MSN Messenger will
+continue to operate in China so it will be interesting to see if this library can be used there.</p>
+
+<p>Regardless of whether the servers shut down, this library serves as an excellent resource for programmers looking
+to familiarize themselves with socket programming, the Async CTP, or Reactive Extensions.</p>
+
+<p><a href="https://github.com/kwerty/Messenger-Library">Grab the source code on GitHub</a></p>
 
 <p>Below are some examples demonstrating its basic usage. There is a console app included in the source code which covers the rest.</p>
 
@@ -245,6 +255,13 @@ msgr.LoggedOut += new EventHandler&lt;LoggedOutEventArgs&gt;((sender, e) =&gt; {
 
 });
 </pre>
+
+<p>Many thanks to the two websites below, I couldn't have done it without you</p>
+
+<ul>
+	<li><a href="http://www.hypothetic.org/docs/msn/">An unofficial overview of the MSN Messenger protocol by Mike Mintz</a></li>
+	<li><a href="http://msnpiki.msnfanatic.com/">MSNpiki - A wiki documenting the MSN Messenger protocol (including latest versions)</a></li>
+</ul>
 
 <p><a href="/">← Back to main page</a></p>
 
