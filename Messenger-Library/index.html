@@ -206,7 +206,46 @@ imSession.MessageReceived += new EventHandler&lt;MessageEventArgs&gt;((sender, e
 
 });
 </pre>
-	
+
+<h2>Changing privacy settings</h2>
+
+<pre class="prettyprint"> 
+msgr.SetPrivacySettingAsync(PrivacySetting.AcceptInvitations, MessengerClient.AcceptInvitationsFromAllUsers);
+</pre>
+
+<h2>Phone numbers</h2>
+
+<pre class="prettyprint"> 
+await msgr.LocalUser.SetPropertyAsync(UserProperty.HomePhone, "555-1505");
+
+string mobilePhone = user.GetProperty(UserProperty.MobileDevice);
+</pre>
+
+<h2>Capabilities</h2>
+
+<pre class="prettyprint"> 
+var capabilities = UserCapabilities.RendersGif | 
+		UserCapabilities.SupportsWinks |
+		UserCapabilities.SupportsVoiceIM |
+		UserCapabilities.HasSpace;
+
+await Msgr.LocalUser.ChangeCapabilitiesAsync(capabilities);	
+</pre>
+
+<h2>Unexpected logout</h2>
+
+<pre class="prettyprint"> 
+msgr.LoggedOut += new EventHandler&lt;LoggedOutEventArgs&gt;((sender, e) =&gt; {
+
+	if (e.Reason == LogoutReason.LoggedInElsewhere)
+		Console.WriteLine(&quot;You logged in at another location&quot;);
+
+	else if (e.Reason == LogoutReason.ConnectionError)
+		Console.WriteLine(&quot;Logged out due to a connection error: &quot; + e.ConnectionError.Message);
+
+});
+</pre>
+
 <p><a href="/">← Back to main page</a></p>
 
 <a href="https://github.com/kwerty/Messenger-Library"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
