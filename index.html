@@ -7,82 +7,44 @@
 
 <style>
 
+html {
+	height: 100%;
+}
+
 body {
-	margin: 120px 0px 0px 0px;
-	background: url('sky.png') repeat-x #ffffff;
-	text-align: center;
-	font-family: Arial;
+	margin: 0px;
+	height: 100%;
 }
 
-a, a:visited, a:active {
-	color: #d80202;
-	text-decoration: none;
+#background {
+	height: 50%;
+	position: relative;
+	background: #b5efff;
 }
 
-a:hover {
-	color: #292929;
+#foreground {
+	height: 270px;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	background: url('sky.png') repeat-x;
 }
-
-
 
 #distant-clouds {
 	background: url('distant-clouds.png');
 }
 
 #clouds {
-
+	height: 180px;
 	margin-top: 90px;
 	background: url('clouds.png');
-	height: 180px;
-}
-
-.up {
-	background: url('sun.png') no-repeat 100%;
 }
 
 #logo {
+	width: 500px;
 	margin: 0 auto;
-	background: url('logo.png') no-repeat;
-	width: 500px;
-	height: 165px;
 	display: block;
-	text-indent: -9999px;
-}
-
-.content {
-	margin: 0px auto;
-	width: 500px;
-	padding: 10px 0px;
-	border: 1px solid #e1e1e1;
-}
-
-h1 {
-	color: #292929;
-}
-
-ul {
-	padding: 0px;
-	list-style: none;
-}
-
-.projects {
-	font-size: 24px;
-}
-
-.links li {
-	display: inline;
-	padding: 0px 15px;
-	border-right: 1px solid #e1e1e1;
-}
-
-.links a, 
-.links a:visited,
-.links a:active {
-	color: #292929;
-
-}
-.links .last {
-	border-right: none;
 }
 
 </style>
@@ -103,46 +65,14 @@ ul {
 
 </head><body>
 
-
-<div id="distant-clouds">
-	<div id="sun">
-		<div id="clouds">
-			<a href="http://kwerty.com" id="logo">Kwerty</a>
+<div id="background">
+	<div id="foreground">
+		<div id="distant-clouds">
+			<div id="clouds">
+				<img id="logo" src="logo.png"></a>
+			</div>
 		</div>
-
 	</div>
-</div>
-
-<div class="content">
-
-	<h1>Kwerty creations</h1>
-
-	<ul class="projects">
-	
-
-		<li><a href="/Gmail-Notifier-for-Windows-7">Gmail Notifier for Windows 7 (and 8)</a></li>
-		<li><a href="http://checkersaur.us">checkersaur.us</a></li>
-		<li><a href="http://squiz.at">Squiz</a></li>
-		<li><a href="/Messenger-Library/">Kwerty Messenger Library</a></li>
-		<!--<li><a href="/YouTube-User-Guard">YouTube User Guard</a></li>-->
-        <li><a href="/FileLaser-Uploader">FileLaser Uploader</a></li>
-		<li><a href="/YouTube-Favorite-Exporter">YouTube Favorite Exporter</a></li>
-		
-
-	</ul>
-
-	<ul class="links">
-		<li>
-		<a href="http://twitter.com/kwerty">Twitter</a>
-		</li><li>
-		<a href="http://github.com/kwerty">Github</a>
-		</li><li>
-		<a href="http://bitbucket.org/kwerty">Bitbucket</a>
-		</li><li class="last">
-		<a href="http://kwerty.wordpress.com">Blog</a>
-		</li>
-	</ul>
-
 </div>
 
 <script>
@@ -158,12 +88,6 @@ var requestAnimFrame = (function() {
        window.setTimeout(callback, 1000/60);
      };
 })();
-
-//the sun looks silly
-//if (new Date().getDay() == 0) {
-//var sun = document.getElementById('sun');
-//sun.setAttribute('class', 'up');
-//}
 
 var clouds = document.getElementById('clouds');
 var distantClouds = document.getElementById('distant-clouds');
@@ -181,8 +105,6 @@ requestAnimFrame(moveClouds);
 
 })();
 </script>
-
-
 
 </body>
 </html>
