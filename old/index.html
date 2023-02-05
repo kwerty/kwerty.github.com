@@ -1,0 +1,113 @@
+<!DOCTYPE html> 
+<html><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>Kwerty</title>
+
+<style>
+
+html {
+	height: 100%;
+}
+
+body {
+	margin: 0px;
+	height: 100%;
+}
+
+#background {
+	padding-top: 100px;
+	height: 50%;
+	position: relative;
+	background: #b5efff;
+	min-width: 500px;
+}
+
+#foreground {
+	height: 270px;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	background: url('sky.png') repeat-x;
+}
+
+#distant-clouds {
+	background: url('distant-clouds.png');
+}
+
+#clouds {
+	height: 180px;
+	margin-top: 90px;
+	background: url('clouds.png');
+}
+
+#logo {
+	width: 500px;
+	margin: 0 auto;
+	display: block;
+}
+
+</style>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-27187162-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</head><body>
+
+<div id="background">
+	<div id="foreground">
+		<div id="distant-clouds">
+			<div id="clouds">
+				<img id="logo" src="logo.png" />
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+(function(){
+
+var requestAnimFrame = (function() {
+  return window.requestAnimationFrame ||
+     window.webkitRequestAnimationFrame ||
+     window.mozRequestAnimationFrame ||
+     window.oRequestAnimationFrame ||
+     window.msRequestAnimationFrame ||
+     function(callback, element) {
+       window.setTimeout(callback, 1000/60);
+     };
+})();
+
+var clouds = document.getElementById('clouds');
+var distantClouds = document.getElementById('distant-clouds');
+
+var x = 0;
+
+function moveClouds() {
+	x = x < 500 ? x+1 : 0;
+	clouds.style.backgroundPosition = x + 'px top';
+	distantClouds.style.backgroundPosition = -x + 'px top';
+	requestAnimFrame(moveClouds);
+}
+
+requestAnimFrame(moveClouds);
+
+})();
+</script>
+
+</body>
+</html>

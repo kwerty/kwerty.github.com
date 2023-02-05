@@ -15,36 +15,21 @@ html {
 body {
 	margin: 0px;
 	height: 100%;
+	background: #090212;
 }
 
 #background {
 	padding-top: 100px;
-	height: 50%;
+	height: 40%;
 	position: relative;
-	background: #b5efff;
-	min-width: 500px;
+	background-image: linear-gradient(#1c0e2d, #090212);
 }
 
-#foreground {
-	height: 270px;
+#logo {
 	position: absolute;
 	bottom: 0px;
 	left: 0px;
 	right: 0px;
-	background: url('sky.png') repeat-x;
-}
-
-#distant-clouds {
-	background: url('distant-clouds.png');
-}
-
-#clouds {
-	height: 180px;
-	margin-top: 90px;
-	background: url('clouds.png');
-}
-
-#logo {
 	width: 500px;
 	margin: 0 auto;
 	display: block;
@@ -69,45 +54,8 @@ body {
 </head><body>
 
 <div id="background">
-	<div id="foreground">
-		<div id="distant-clouds">
-			<div id="clouds">
-				<img id="logo" src="logo.png" />
-			</div>
-		</div>
-	</div>
+	<img id="logo" src="logo-2023.png" />
 </div>
-
-<script>
-(function(){
-
-var requestAnimFrame = (function() {
-  return window.requestAnimationFrame ||
-     window.webkitRequestAnimationFrame ||
-     window.mozRequestAnimationFrame ||
-     window.oRequestAnimationFrame ||
-     window.msRequestAnimationFrame ||
-     function(callback, element) {
-       window.setTimeout(callback, 1000/60);
-     };
-})();
-
-var clouds = document.getElementById('clouds');
-var distantClouds = document.getElementById('distant-clouds');
-
-var x = 0;
-
-function moveClouds() {
-	x = x < 500 ? x+1 : 0;
-	clouds.style.backgroundPosition = x + 'px top';
-	distantClouds.style.backgroundPosition = -x + 'px top';
-	requestAnimFrame(moveClouds);
-}
-
-requestAnimFrame(moveClouds);
-
-})();
-</script>
 
 </body>
 </html>
